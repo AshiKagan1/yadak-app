@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اینترنت نیست</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 24px 20px;
+    font-family: Tahoma, "Vazirmatn", sans-serif; color: #fff;
+    background: linear-gradient(160deg, #1f2430 0%, #11141b 100%);
+    overflow-x: hidden;
+  }
+  .wifi { width: 110px; height: 110px; color: #ff8a3d; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: .55; transform: scale(.94);} }
+  h1 { font-size: 28px; margin: 18px 0 8px; }
+  p { margin: 0 auto; max-width: 320px; line-height: 2; color: #b8c0cc; font-size: 15px; }
+  button {
+    margin-top: 24px; border: 0; border-radius: 14px; padding: 14px 40px;
+    font-size: 17px; font-family: inherit; color: #fff; background: #e8590c;
+    box-shadow: 0 6px 18px rgba(232,89,12,.4);
+  }
+  button:active { transform: scale(.96); }
+  #hint { height: 22px; margin-top: 14px; font-size: 14px; color: #ffb27a; opacity: 0; transition: opacity .3s; }
+  #hint.on { opacity: 1; }
+  .parts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 34px; width: 100%; max-width: 330px; }
+  .part {
+    aspect-ratio: 1; border-radius: 18px; background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    display: flex; align-items: center; justify-content: center;
+    animation: float 3.2s ease-in-out infinite;
+  }
+  .part svg { width: 56%; height: 56%; color: #ffa566; }
+  .part:nth-child(2) { animation-delay: .4s; } .part:nth-child(3) { animation-delay: .8s; }
+  .part:nth-child(4) { animation-delay: 1.2s; } .part:nth-child(5) { animation-delay: 1.6s; }
+  .part:nth-child(6) { animation-delay: 2s; }
+  @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
+  .spin { animation: spin 9s linear infinite; transform-origin: center; }
+  @keyframes spin { to { transform: rotate(360deg);} }
+  footer { margin-top: 28px; font-size: 13px; color: #6f7886; }
+</style>
+</head>
+<body>
+
+<svg class="wifi" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+  <path d="M8 24a34 34 0 0 1 48 0"/><path d="M16 33a22 22 0 0 1 32 0"/><path d="M24 42a10 10 0 0 1 16 0"/>
+  <circle cx="32" cy="51" r="2" fill="currentColor"/><path d="M10 8L54 58"/>
+</svg>
+
+<h1>اینترنت نیست!</h1>
+<p>اتصال شما به اینترنت قطع است. لطفاً وای‌فای یا اینترنت موبایل را بررسی کنید و دوباره تلاش کنید.</p>
+<button onclick="retry()">تلاش دوباره</button>
+<div id="hint">هنوز اینترنت وصل نشده است</div>
+
+<div class="parts">
+  <!-- دیسک ترمز -->
+  <div class="part"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="8"/><circle cx="32" cy="15" r="3"/><circle cx="47" cy="23.5" r="3"/><circle cx="47" cy="40.5" r="3"/><circle cx="32" cy="49" r="3"/><circle cx="17" cy="40.5" r="3"/><circle cx="17" cy="23.5" r="3"/></svg></div>
+  <!-- چرخ‌دنده -->
+  <div class="part"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><g class="spin"><circle cx="32" cy="32" r="22" stroke-width="8" stroke-dasharray="8.64 8.64"/><circle cx="32" cy="32" r="16"/><circle cx="32" cy="32" r="6"/></g></svg></div>
+  <!-- شمع -->
+  <div class="part"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><rect x="24" y="4" width="16" height="12" rx="2"/><path d="M20 16h24v8H20z"/><path d="M26 24h12v18H26z"/><path d="M32 42v12M32 54h-6"/></svg></div>
+  <!-- باتری -->
+  <div class="part"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><rect x="6" y="20" width="52" height="32" rx="4"/><rect x="14" y="13" width="8" height="7"/><rect x="42" y="13" width="8" height="7"/><path d="M16 36h12M22 30v12M38 36h12"/></svg></div>
+  <!-- لاستیک -->
+  <div class="part"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="18"/><circle cx="32" cy="32" r="5"/><path d="M32 14v13M32 37v13M14 32h13M37 32h13"/></svg></div>
+  <!-- فیلتر روغن -->
+  <div class="part"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="14" width="32" height="42" rx="6"/><rect x="21" y="6" width="22" height="8" rx="2"/><path d="M16 28h32M16 42h32"/></svg></div>
+</div>
+
+<footer>یدک کالا</footer>
+
+<script>
+  function retry() {
+    if (window.Android) { Android.retry(); } else { location.reload(); }
+  }
+  function showHint() {
+    var h = document.getElementById('hint');
+    h.classList.add('on');
+    setTimeout(function () { h.classList.remove('on'); }, 2500);
+  }
+  window.addEventListener('online', retry);
+</script>
+</body>
+</html>
